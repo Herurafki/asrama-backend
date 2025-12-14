@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laporan Data Izin Keluar</title>
+    <style>
+        body { 
+                font-family: sans-serif;
+                font-size: 10px; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            page-break-inside: auto; 
+        }  
+
+        tr { 
+            page-break-inside: avoid; 
+            page-break-after: auto; 
+            
+        }
+
+        th, td { 
+            border: 1px solid #161515; 
+            padding: 4px; 
+            text-align: left; 
+            vertical-align: top; 
+        }
+
+        th { 
+            background: #009933; 
+            font-color: white;
+            font-weight: bold; 
+        }
+        
+        /* Utilitas untuk header */
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h2 { margin: 0; }
+        .header p { margin: 2px 0; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>DATA PERIZINAN ASRAMA MI QUR'AN AL-FALAH</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Siswa</th>
+                <th>Alasan</th>
+                <th>Tanggal Keluar</th>
+                <th>Waktu Keluar</th>
+                <th>Tanggal Masuk</th> 
+                <th>Waktu Masuk</th>
+                <th>Status</th>
+                <th>Orang Tua</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($records as $record)
+            <tr>
+                <td style="text-align: center;">{{ $loop->iteration }}</td>
+                <td>{{ $record->siswa->nama_lengkap }}</td>
+                <td>{{ $record->alasan }}</td>
+                <td>{{ \Carbon\Carbon::parse($record->tanggal_keluar)->format('d M Y') }}</td>
+                <td>{{ $record->waktu_keluar }}</td>
+                <td>{{ \Carbon\Carbon::parse($record->tanggal_masuk)->format('d M Y') }}</td> 
+                <td>{{ $record->waktu_masuk }}</td>
+                <td>{{ $record->status }}</td>
+                <td>{{ $record->user->name }}</td>
+                <td>{{ $record->keterangan }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <div class="footer text-left">
+        <p>Tanggal Export: {{ now()->format('d M Y') }}</p>
+    </div>
+</body>
+</html>

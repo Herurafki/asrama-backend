@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laporan Data Siswa Per Kamar</title>
+    <style>
+        body { 
+                font-family: sans-serif;
+                font-size: 10px; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            page-break-inside: auto; 
+        }  
+
+        tr { 
+            page-break-inside: avoid; 
+            page-break-after: auto; 
+            
+        }
+
+        th, td { 
+            border: 1px solid #161515; 
+            padding: 4px; 
+            text-align: left; 
+            vertical-align: top; 
+        }
+
+        th { 
+            background: #009933; 
+            font-color: white;
+            font-weight: bold; 
+        }
+        
+        /* Utilitas untuk header */
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h2 { margin: 0; }
+        .header p { margin: 2px 0; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>DATA SISWA PER KAMAR     ASRAMA MI QUR'AN AL-FALAH</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Siswa</th>
+                <th>Jenis Kelamin</th>
+                <th>Kamar</th>
+                <th>Tanggal Masuk</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($records as $record)
+            <tr>
+                <td style="text-align: center;">{{ $loop->iteration }}</td>
+                <td>{{ $record->siswa->nama_lengkap }}</td>
+                <td>{{ $record->siswa->jenis_kelamin }}</td>
+                <td>{{ $record->kamar->nama_kamar }}</td>
+                <td>{{ \Carbon\Carbon::parse($record->tgl_masuk)->format('d M Y') }}</td>
+                <td>{{ $record->status }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <div class="footer text-left">
+        <p>Tanggal Export: {{ now()->format('d M Y') }}</p>
+    </div>
+</body>
+</html>
