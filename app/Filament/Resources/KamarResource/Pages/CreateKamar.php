@@ -10,6 +10,8 @@ class CreateKamar extends CreateRecord
 {
     protected static string $resource = KamarResource::class;
 
+    protected static ?string $title = 'Tambah Kamar'; 
+
     protected function getCreateFormAction(): Actions\Action
     {
         return parent::getCreateFormAction()

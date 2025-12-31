@@ -37,6 +37,7 @@ class KamarResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('kapasitas')
                     ->required()
+                    ->numeric()
                     ->maxLength(255),
                 Forms\Components\Select::make('jenis_kelamin')
                     ->options([

@@ -203,8 +203,6 @@ class PerizinanResource extends Resource
     {
         return [
             'index' => Pages\ListPerizinans::route('/'),
-            'create' => Pages\CreatePerizinan::route('/create'),
-            'edit' => Pages\EditPerizinan::route('/{record}/edit'),
         ];
     }
 }

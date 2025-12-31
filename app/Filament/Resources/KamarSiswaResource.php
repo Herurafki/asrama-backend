@@ -95,6 +95,7 @@ class KamarSiswaResource extends Resource
                     ->label('Status')
                     ->getStateUsing(fn (KamarSiswa $r) => $r->tgl_keluar ? 'Nonaktif' : 'Aktif')
                     ->colors(['success' => 'Aktif', 'secondary' => 'Nonaktif']),
+                Tables\Columns\TextColumn::make('keterangan')->label('Keterangan')->searchable()->sortable(),
             ])
             ->filters([
                 //
@@ -262,8 +263,6 @@ class KamarSiswaResource extends Resource
     {
         return [
             'index' => Pages\ListKamarSiswas::route('/'),
-            'create' => Pages\CreateKamarSiswa::route('/create'),
-            'edit' => Pages\EditKamarSiswa::route('/{record}/edit'),
         ];
     }
 

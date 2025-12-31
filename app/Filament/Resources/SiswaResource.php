@@ -49,13 +49,31 @@ class SiswaResource extends Resource
                 Forms\Components\TextInput::make('tanggal_lahir')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('jenis_kelamin')
+                Forms\Components\Select::make('jenis_kelamin')
+                ->options([
+                    'Laki-laki' => 'Laki-laki',
+                    'Perempuan' => 'Perempuan',
+                ])
                     ->required(),
-                Forms\Components\TextInput::make('kewarganegaraan')
+                Forms\Components\Select::make('kewarganegaraan')
+                ->options([
+                    'WNI' => 'WNI',
+                    'WNA' => 'WNA',
+                ])
                     ->required(),
-                Forms\Components\TextInput::make('status_keluarga')
+                Forms\Components\Select::make('status_keluarga')
+                    ->options([
+                        'Kandung' => 'Kandung',
+                        'Angkat' => 'Angkat',
+                    ])
                     ->required(),
-                Forms\Components\TextInput::make('status_orangtua'),
+                Forms\Components\Select::make('status_orangtua')
+                ->options([
+                    'Yatim' => 'Yatim',
+                    'Piatu' => 'Piatu',
+                    'Yatim piatu' => 'Yatim piatu',
+                    'Dhuafa'=> 'Dhuafa',
+                ]),
                 Forms\Components\TextInput::make('anak_ke')
                     ->required()
                     ->maxLength(255),
@@ -138,7 +156,10 @@ class SiswaResource extends Resource
         ])
         ->bulkActions([
             Tables\Actions\BulkActionGroup::make([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make()
+                    ->color('danger')
+                    ->icon('heroicon-o-trash')
+                    ->label('Hapus'),
             ]),
         ]);
 }
